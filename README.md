@@ -1,85 +1,92 @@
-<div align=center>
+<div align="center">
 
 # SplitMate 🌿
 
-### Fair bill splitting, wrapped in a playful Kamakura summer experience.
+### Split a shared meal fairly, with shared dishes, discounts, and delivery all included.
 
-Split food costs, discounts, and delivery fees in seconds.<br>
-No account, no backend, and no installation required.
+**[Open SplitMate](https://panyawat56.github.io/grabsplit-kamakura/)**
+
+Free, no sign-up, nothing to install. Works on your phone.
 
 **ไทย** · **English** · **日本語** · **中文**
+
+![SplitMate on a desktop browser, with a finished bill shown as fare tickets](docs/screenshot-desktop.jpg)
 
 </div>
 
 ---
 
-## About SplitMate
+## What it does
 
-SplitMate is a lightweight bill-splitting web app for shared meals. It distributes discounts proportionally, divides delivery fees equally, and produces a clear summary that is ready to copy or share with friends.
+You ordered food together, one friend paid, and now everyone needs to pay them back. SplitMate works out exactly how much each person owes:
 
-## Highlights
+- **Your own dishes** are counted for you alone.
+- **Shared dishes**, like a pizza or a hot pot, are split equally between the people who had them.
+- **Discounts and coupons** are shared in proportion to how much each person ordered, so a big order gets a bigger slice of the discount.
+- **Delivery fees** are split equally between the people who ordered something.
 
-| | Feature |
-|---|---|
-| ⚖️ | Proportional discount allocation based on each person's food subtotal |
-| 🧮 | Satang-level calculations with deterministic remainder distribution |
-| 👥 | Support for 2–10 people and a designated upfront payer |
-| 🌏 | Complete Thai, English, Japanese, and Simplified Chinese interfaces |
-| 💾 | Automatic local persistence for bill data and language preference |
-| 📤 | Web Share integration with a clipboard fallback |
-| ♿ | Keyboard navigation, screen-reader labels, and reduced-motion support |
-| 🎐 | Subtle koto and fūrin sounds with an interactive Kamakura canvas scene |
+Each person gets a ticket that says how much to transfer and to whom. Copy the summary or share it straight to your group chat.
 
 ## How to use it
 
-1. Enter each person's name and food subtotal.
-2. Add the total discount and delivery fee.
-3. Select the person who paid upfront.
-4. Choose **Calculate**.
-5. Copy or share the settlement summary with the group.
+1. Open **[SplitMate](https://panyawat56.github.io/grabsplit-kamakura/)**.
+2. Enter each person's name and the price of what they ordered for themselves.
+3. Under **Shared dishes**, add anything you shared and tap the names of the people who had it.
+4. Enter the total discount and the delivery fee, and choose who paid.
+5. Tap **Split the bill**.
+6. Tap **Copy summary** or **Share** to send the result to your friends.
 
-## Calculation model
+Once you've split the bill, the result updates as you type, so you can fix a typo without starting over. Amounts can include commas, such as `1,245.50`.
 
-- Discounts are distributed in proportion to each person's food subtotal.
-- Delivery fees are divided equally among everyone.
-- All calculations use integer satang values.
-- Remainders are distributed deterministically so individual totals always match the net bill.
-- Applied discounts are capped at the total food subtotal.
+## A worked example
 
-## Run locally
+Few, Mint, and Ploy are on the order. Mint pays the ฿1,759.50 total.
 
-SplitMate is a dependency-free static single-page app with no build step.
+| | Few | Mint | Ploy |
+|---|---:|---:|---:|
+| Own dishes | ฿180.00 | ฿1,245.50 | nothing |
+| Pizza ฿399, shared by Few and Mint | ฿199.50 | ฿199.50 | |
+| **Food subtotal** | **฿379.50** | **฿1,445.00** | |
+| ฿100 discount, by share of food | −฿20.80 | −฿79.20 | |
+| ฿35 delivery, split between people who ordered | ฿17.50 | ฿17.50 | |
+| **Share of the bill** | **฿376.20** | **฿1,383.30** | **฿0** |
+
+Result: **Few transfers ฿376.20 to Mint.** Ploy didn't order anything, so Ploy isn't charged for delivery.
+
+## How the math works
+
+- All amounts are calculated in whole satang (฿0.01), so there are no floating-point rounding surprises.
+- When an amount can't be split evenly, the leftover satang go to people in a fixed, predictable order. Everyone's shares always add up to the exact bill.
+- If the discount is bigger than the food total, it's capped at the food total.
+
+## Privacy
+
+Everything happens in your browser. Your bill is saved on your own device so it's still there if you close the tab, and **Start over** clears it. SplitMate has no server, no account, no analytics, and doesn't collect any data.
+
+## Also included
+
+- Thai, English, Japanese, and Simplified Chinese
+- Works with a keyboard and screen readers, and respects your device's reduced-motion setting
+- An illustrated Kamakura summer scene with a passing Enoden train, plus optional koto and wind-chime sounds (off by default)
+
+<p align="center"><img src="docs/screenshot-mobile.jpg" width="320" alt="SplitMate on a phone, showing shared dishes and the fare tickets"></p>
+
+## Run it yourself
+
+SplitMate is a single HTML file with no build step and no dependencies.
 
     git clone https://github.com/panyawat56/grabsplit-kamakura.git
     cd grabsplit-kamakura
 
-Open **index.html** in a browser or serve the folder with any static file server.
-
-## Built with
-
-- Semantic HTML
-- Responsive CSS
-- Vanilla JavaScript
-- Canvas 2D
-- Web Audio API
-- Web Share and Clipboard APIs
-- Local Storage
-
-## Privacy
-
-All bill data is processed and stored locally on the device. SplitMate has no backend, analytics, account system, or data collection.
-
-## Project structure
+Open `index.html` in a browser, or serve the folder with any static file server. It needs an internet connection only for its web fonts.
 
     .
-    ├── index.html   # Interface, calculation engine, translations, canvas, and audio
-    └── README.md    # Project documentation
+    ├── index.html    # the whole app: layout, styles, calculations, translations, scene, sound
+    ├── assets/       # Kamakura background artwork
+    └── docs/         # screenshots used in this README
 
----
+Found a bug or have an idea? [Open an issue](https://github.com/panyawat56/grabsplit-kamakura/issues).
 
-<div align=center>
+## License
 
-Made for fairer meals and easier friendships.  
-**Split fairly with SplitMate.**
-
-</div>
+[MIT](LICENSE) © 2026 Panyawat Piriyaniti. You're free to use, copy, and modify the code as long as the license notice stays with it.
