@@ -4,7 +4,7 @@
 
 ### Split a shared meal fairly, with shared dishes, discounts, and delivery all included.
 
-**[Open SplitMate](https://panyawat56.github.io/grabsplit-kamakura/)**
+**[Open SplitMate](https://panyawat56.github.io/splitmate/)**
 
 Free, no sign-up, nothing to install. Works on your phone.
 
@@ -29,7 +29,7 @@ Each person gets a ticket that says how much to transfer and to whom. Copy the s
 
 ## How to use it
 
-1. Open **[SplitMate](https://panyawat56.github.io/grabsplit-kamakura/)**.
+1. Open **[SplitMate](https://panyawat56.github.io/splitmate/)**.
 2. Enter each person's name and the price of what they ordered for themselves.
 3. Under **Shared dishes**, add anything you shared and tap the names of the people who had it.
 4. Enter the total discount and the delivery fee, and choose who paid.
@@ -75,8 +75,8 @@ Everything happens in your browser. Your bill is saved on your own device so it'
 
 SplitMate is a single HTML file with no build step and no dependencies.
 
-    git clone https://github.com/panyawat56/grabsplit-kamakura.git
-    cd grabsplit-kamakura
+    git clone https://github.com/panyawat56/splitmate.git
+    cd splitmate
 
 Open `index.html` in a browser, or serve the folder with any static file server. It needs an internet connection only for its web fonts.
 
@@ -85,7 +85,7 @@ Open `index.html` in a browser, or serve the folder with any static file server.
     ├── assets/       # Kamakura background artwork
     └── docs/         # screenshots used in this README
 
-Found a bug or have an idea? [Open an issue](https://github.com/panyawat56/grabsplit-kamakura/issues).
+Found a bug or have an idea? [Open an issue](https://github.com/panyawat56/splitmate/issues).
 
 ## License
 
